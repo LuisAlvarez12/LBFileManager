@@ -1,10 +1,9 @@
 //
-//  LocationKind.swift
+//  Folder+Sequence.swift
 //  LBFileManager
 //
 //  Created by Luis Alvarez on 2/6/25.
 //
-
 
 /**
  *  Files
@@ -95,7 +94,8 @@ public extension Storage where LocationType == Folder {
         }
 
         guard fileManager.createFile(atPath: filePath, contents: contents),
-              let storage = try? Storage<File>(path: filePath, fileManager: fileManager) else {
+              let storage = try? Storage<File>(path: filePath, fileManager: fileManager)
+        else {
             throw WriteError(path: filePath, reason: .fileCreationFailed)
         }
 
@@ -104,7 +104,6 @@ public extension Storage where LocationType == Folder {
 }
 
 // MARK: - Files
-
 
 // MARK: - Folders
 
@@ -149,7 +148,8 @@ public extension Folder {
                          fileManager: FileManager,
                          isRecursive: Bool,
                          includeHidden: Bool,
-                         reverseTopLevelTraversal: Bool) {
+                         reverseTopLevelTraversal: Bool)
+        {
             self.folder = folder
             self.fileManager = fileManager
             self.isRecursive = isRecursive
@@ -214,7 +214,7 @@ public extension Folder {
 
 extension Folder.ChildSequence: CustomStringConvertible {
     public var description: String {
-        return lazy.map({ $0.description }).joined(separator: "\n")
+        return lazy.map { $0.description }.joined(separator: "\n")
     }
 }
 
@@ -291,4 +291,3 @@ public extension Folder.ChildSequence {
         try forEach { try $0.delete() }
     }
 }
-

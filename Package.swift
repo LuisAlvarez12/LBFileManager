@@ -14,7 +14,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "LBFileManager",
-            targets: ["LBFileManager"]),
+            targets: ["LBFileManager"]
+        ),
     ],
     dependencies: [
         .package(name: "LBFoundation", url: "https://github.com/LuisAlvarez12/LBFoundation.git", from: "2.0.2"),

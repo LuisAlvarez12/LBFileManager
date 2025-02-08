@@ -1,5 +1,5 @@
 //
-//  LocationKind.swift
+//  Location.swift
 //  LBFileManager
 //
 //  Created by Luis Alvarez on 2/8/25.

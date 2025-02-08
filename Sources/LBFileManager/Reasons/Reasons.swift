@@ -1,5 +1,5 @@
 //
-//  LocationErrorReason.swift
+//  Reasons.swift
 //  LBFileManager
 //
 //  Created by Luis Alvarez on 2/8/25.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Enum listing reasons that a location manipulation could fail.
-public enum LocationErrorReason : Sendable{
+public enum LocationErrorReason: Sendable {
     /// The location couldn't be found.
     case missing
     /// An empty path was given when refering to a file.
@@ -31,7 +31,7 @@ public enum LocationErrorReason : Sendable{
 }
 
 /// Enum listing reasons that a write operation could fail.
-public enum WriteErrorReason : Sendable{
+public enum WriteErrorReason: Sendable {
     /// An empty path was given when writing or creating a location.
     case emptyPath
     /// A folder couldn't be created because of an underlying system error.
@@ -45,7 +45,7 @@ public enum WriteErrorReason : Sendable{
 }
 
 /// Enum listing reasons that a read operation could fail.
-public enum ReadErrorReason : Sendable{
+public enum ReadErrorReason: Sendable {
     /// A file couldn't be read because of an underlying system error.
     case readFailed(Error)
     /// Failed to decode a given set of data into a string.

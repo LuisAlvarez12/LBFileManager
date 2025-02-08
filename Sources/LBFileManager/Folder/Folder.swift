@@ -7,21 +7,20 @@
 
 public struct Folder: Location, Identifiable {
     public var id: String
-    
+
     public let storage: Storage<Folder>
 
     public init(storage: Storage<Folder>) {
         self.storage = storage
-        self.id = storage.path
+        id = storage.path
     }
-    
-#if DEBUG
-    public init(debugFolderPath: String, with files: [File]) {
-        try! self.init(storage: Storage(
-            path: debugFolderPath,
-            fileManager: .default
-        ))
-        
-    }
-#endif
+
+    #if DEBUG
+        public init(debugFolderPath: String, with _: [File]) {
+            try! self.init(storage: Storage(
+                path: debugFolderPath,
+                fileManager: .default
+            ))
+        }
+    #endif
 }

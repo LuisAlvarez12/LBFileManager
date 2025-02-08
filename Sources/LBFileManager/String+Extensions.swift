@@ -5,7 +5,7 @@
 //  Created by Luis Alvarez on 2/8/25.
 //
 import Foundation
- 
+
 extension String {
     func removingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }

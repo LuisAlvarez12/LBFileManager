@@ -44,14 +44,14 @@ public extension Folder {
     var filesSequence: ChildSequence<File> {
         return storage.makeChildSequence()
     }
-    
+
     var files: Files {
-#if DEBUG
-        let interceptedFiles = Features.fileManager.getFiles(folder: self)
-        if !interceptedFiles.isEmpty {
-            return interceptedFiles
-        }
-#endif
+        #if DEBUG
+            let interceptedFiles = Features.fileInterceptor.getFiles(folder: self)
+            if !interceptedFiles.isEmpty {
+                return interceptedFiles
+            }
+        #endif
         return Array(storage.makeChildSequence())
     }
 
@@ -179,7 +179,8 @@ public extension Folder {
     /// - throws: `WriteError` if a new file couldn't be created.
     @discardableResult
     func createFileIfNeeded(at path: String,
-                            contents: @autoclosure () -> Data? = nil) throws -> File {
+                            contents: @autoclosure () -> Data? = nil) throws -> File
+    {
         return try (try? file(at: path)) ?? createFile(at: path, contents: contents())
     }
 
@@ -191,7 +192,8 @@ public extension Folder {
     /// - throws: `WriteError` if a new file couldn't be created.
     @discardableResult
     func createFileIfNeeded(withName name: String,
-                            contents: @autoclosure () -> Data? = nil) throws -> File {
+                            contents: @autoclosure () -> Data? = nil) throws -> File
+    {
         return try (try? file(named: name)) ?? createFile(named: name, contents: contents())
     }
 
@@ -209,7 +211,7 @@ public extension Folder {
     /// - parameter includeHidden: Whether hidden files should be included (default: `false`).
     /// - throws: `LocationError` if the operation couldn't be completed.
     func moveContents(to folder: Folder, includeHidden: Bool = false) throws {
-        var files = self.filesSequence
+        var files = filesSequence
         files.includeHidden = includeHidden
         try files.move(to: folder)
 
@@ -222,7 +224,7 @@ public extension Folder {
     /// - parameter includeHidden: Whether hidden files should also be deleted (default: `false`).
     /// - throws: `LocationError` if the operation couldn't be completed.
     func empty(includingHidden includeHidden: Bool = false) throws {
-        var files = self.filesSequence
+        var files = filesSequence
         files.includeHidden = includeHidden
         try files.delete()
 
@@ -230,11 +232,11 @@ public extension Folder {
         folders.includeHidden = includeHidden
         try folders.delete()
     }
-    
+
     func isEmpty(includingHidden includeHidden: Bool = false) -> Bool {
-        var files = self.filesSequence
+        var files = filesSequence
         files.includeHidden = includeHidden
-        
+
         if files.first != nil {
             return false
         }
@@ -244,4 +246,3 @@ public extension Folder {
         return folders.first == nil
     }
 }
-

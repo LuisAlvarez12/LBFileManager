@@ -7,7 +7,7 @@
 import Foundation
 
 extension Storage {
-    var attributes: [FileAttributeKey : Any] {
+    var attributes: [FileAttributeKey: Any] {
         return (try? fileManager.attributesOfItem(atPath: path)) ?? [:]
     }
 
@@ -20,7 +20,8 @@ extension Storage {
     }
 
     func move(to newPath: String,
-              errorReasonProvider: (Error) -> LocationErrorReason) throws {
+              errorReasonProvider: (Error) -> LocationErrorReason) throws
+    {
         do {
             try fileManager.moveItem(atPath: path, toPath: newPath)
 

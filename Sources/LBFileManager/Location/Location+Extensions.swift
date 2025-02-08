@@ -8,7 +8,7 @@
 import Foundation
 
 public extension Location {
-    static func ==(lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.storage.path == rhs.storage.path
     }
 

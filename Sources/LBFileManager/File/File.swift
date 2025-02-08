@@ -15,12 +15,11 @@ public struct File: Location {
     public init(storage: Storage<File>) {
         self.storage = storage
     }
-    
-#if DEBUG
-    public init(debugFileName: String, withExtenion: String) {
-        let path = "\(Self.DEBUG_FILE_PREFIX)-\(UUID().uuidString).\(withExtenion)"
-        self.storage = try! Storage<File>(path: path, fileManager: .default)
-    }
-#endif
-    
+
+    #if DEBUG
+        public init(debugFileName _: String, withExtenion: String) {
+            let path = "\(Self.DEBUG_FILE_PREFIX)-\(UUID().uuidString).\(withExtenion)"
+            storage = try! Storage<File>(path: path, fileManager: .default)
+        }
+    #endif
 }

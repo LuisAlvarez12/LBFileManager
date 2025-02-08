@@ -5,7 +5,6 @@
 //  Created by Luis Alvarez on 2/8/25.
 //
 
-
 // MARK: - Errors
 
 /// Error type thrown by all of Files' throwing APIs.

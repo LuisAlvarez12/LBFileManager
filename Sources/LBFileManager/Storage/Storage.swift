@@ -17,13 +17,13 @@ public final class Storage<LocationType: Location> {
     init(path: String, fileManager: FileManager) throws {
         self.path = path
         self.fileManager = fileManager
-#if DEBUG
-        if !path.starts(with: Folder.DEBUG_FOLDER_PREFIX) && !path.starts(with: File.DEBUG_FILE_PREFIX) {
-            try validatePath()
-        }
+        #if DEBUG
+            if !path.starts(with: Folder.DEBUG_FOLDER_PREFIX), !path.starts(with: File.DEBUG_FILE_PREFIX) {
+                try validatePath()
+            }
         #else
-        try validatePath()
-#endif
+            try validatePath()
+        #endif
     }
 
     private func validatePath() throws {
