@@ -18,7 +18,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "LBFoundation", url: "https://github.com/LuisAlvarez12/LBFoundation.git", from: "2.0.3"),
+        .package(name: "LBFoundation", url: "https://github.com/LuisAlvarez12/LBFoundation.git", from: "2.0.4"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
